@@ -1,0 +1,129 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+
+
+body {
+    margin: 0;
+    background-color: #f4f4f4;
+  }
+  
+  a {
+    color:rgb(97, 96, 96);
+  }
+  
+  .header {
+    background-color: #fff;
+    box-shadow: 1px 1px 4px 0 #ff8097;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+  }
+  
+  .header li a {
+    display: block;
+    padding: 5px 10px;
+    border-right: 1px solid #f4f4f4;
+    text-decoration: none;
+  }
+  
+  .header li a:hover,
+  .header .menu-btn:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: 1.5em;
+    padding: 20px 30px;
+    text-decoration: none;
+  }
+  
+  
+  .header .menu-btn {
+    display: flex;
+  }
+  
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
+    }
+    .header li a {
+      padding: 20px 50px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+      display: flex;
+      align-content: center;
+      
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
+  .image-banner{
+    display: flex;
+    align-items: center;
+    height:700px ;
+    width: 900px;
+    margin-left: 180px;
+  }
+  .banner1{
+    display: flex;
+    align-items: left;
+    margin-left: 1px;
+  }
+ 
+  .texto1{
+    display: flex;
+    align-items: center;
+    margin: top ;
+    float: right;
+  }
+  
+  .box-informacoes{
+    display: flex;
+    justify-content: space-evenly;
+    
+    
+  }
+  
+  div [class^="col-"]{
+    padding-left:5px;
+    padding-right:5px;
+  }
+  .card{
+    transition:0.5s;
+    cursor:pointer;
+  }
+  
+  .card:hover{
+    transform: scale(1.09);
+    box-shadow: 8px 8px 5px #ff8097b4;
+  }
+  .card-text{
+    height:130px;  
+  }
+  .cadastro{
+display: flex;
+align-items: center;
+align-content: space-between;
+margin-left: 150px;
+
+  }
+  
+  
+  
