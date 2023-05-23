@@ -13,11 +13,11 @@
     
         <div class="header">
             <a href="" class="logo">
-              <img src="LOGO.png" alt="" height="60px">
+              <img src="./img/LOGO.png" alt="" height="60px">
             </a>
             <ul class="menu">
               <li>
-                <a href="">Home</a>
+                <a href="#./index.html/#Home">Home</a>
               </li>
               <li>
                 <a href="">Contato</a>
@@ -26,36 +26,105 @@
                 <a href="">Saiba +</a>
               </li>
               <li>
-                <a href="">Cadastre-se</a>
+                <a href="./Cadastro.html">Cadastre-se</a>
               </li>
               <li>
-                <a href="">Login</a>
+                <a href="./">Login</a>
               </li>
             </ul>
         </div>
       </header>
     <section>
         <div class="area-cadastro">
+          <div class="img-fundo">
+          <img class="img" src="img/imgCadastro.png" height="400px" > 
+          </div>
         <div class="cadastro1">
             <h2 class="tex1">Cadastre-se</h2>
-            <input type="text"placeholder="Nome Completo:" class="text1">
-            <input type="text"placeholder="Data de Nascimento:" class="text1">
-            <input type="number"placeholder="Celular:" class="text1">
-            <input type="text"placeholder="Email:" class="text1">
+            <input type="text"placeholder="Nome Completo:" class="text1" id="inp_nomeCompleto">
+            <input type="text"placeholder="Data de Nascimento:" class="text1" id="inp_dtNsc">
+            <input type="number"placeholder="Celular:" class="text1" id="inp_cel">
+            <input type="number"placeholder="Peso Atual:" class="text1" id="inp_peso">
         </div>
         <div class="cadastro2">
             <h2>Só mais um pouco!</h2>
-            <input type="text"placeholder="Apelido:" class="input-form">
-            <input type="text"placeholder="Peso Atual:" class="input-form">
-            <input type="text"placeholder="Login:" class="input-form">
-            <input type="number"placeholder="Senha:" class="input-form">
+            <input type="text"placeholder="Apelido:" class="input-form" id="inp_apelido">
+            <input type="text"placeholder="Email:" class="input-form" id="inp_email">
+            <input type="password"placeholder="Senha:" class="input-form" id="inp_senha">
+            <input type="password"placeholder="Confirmação de Senha:" class="input-form" id="inp_confSenha">
             <button onclick="cadastrar()">
                 Cadastrar!
             </button>
-
+            
 
         </div>
         </div>
     </section>
 </body>
 </html>
+<script>
+function cadastrar() {
+   aguardar();
+
+//Recupere o valor da nova input pelo nome do id
+// Agora vá para o método fetch logo abaixo
+var nomeCompleto = inp_nomeCompleto.value;
+var emailVar= inp_email.value;
+var senhaVar = inp_senha.value;
+var confirmacaoSenhaVar = inp_confSenha.value;
+
+if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+    cardErro.style.display = "block"
+    mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+    finalizarAguardar();
+    return false;
+}
+else {
+    setInterval(sumirMensagem, 5000)
+}
+
+// Enviando o valor da nova input
+fetch("/usuarios/cadastrar", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+    })
+}).then(function (resposta) {
+
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {
+        cardErro.style.display = "block";
+
+        mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+        setTimeout(() => {
+            window.location = "login.html";
+        }, "2000")
+
+        limparFormulario();
+        finalizarAguardar();
+    } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+    }
+}).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+    finalizarAguardar();
+});
+
+return false;
+}
+
+
+function sumirMensagem() {
+cardErro.style.display = "none"
+}
+</script>

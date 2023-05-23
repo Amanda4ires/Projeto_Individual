@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./dashboard.css"/>
+</head>
+<body> 
+<header >
+    
+  <div class="header">
+      <a href="" class="logo">
+        <img src="LOGO.png" alt="" height="60px">
+      </a>
+      <ul class="menu">
+        <li>
+          <a href="">Home</a>
+        </li>
+        <li>
+          <a href="">Contato</a>
+        </li>
+        <li>
+          <a href="">Saiba +</a>
+        </li>
+        
+        <li>
+          <a href="">LogOut</a>
+        </li>
+      </ul>
+  </div>
+  <div class="menu">
+    <ul id=menu>
+      <li><a href="">Section 1</a>
+      <li><a href="">Section 2</a>
+      <li><a href="">Section 3</a>
+      </ul>
+
+  </div>
+</header>
+
+
+    <div class="grafico">
+        <canvas id="myChart" style="position: relative" height="5px" width="10px"></canvas>
+      </div>
+</body>
+</html>
+<script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        datasets: [{
+          label: 'Perda de peso',
+          borderColor: 'rgb(255, 153, 204)',
+          backgroundColor : 'white ',
+          color: 'white',
+          data: [82, 80 , 78.5,78 , 75, 70, 69, 64.7, 60],
+          borderWidth: 3,
+          
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            color: "white",
+          },
+          x:{
+            ticks:{
+              color: "white",
+              
+            }
+          }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              color: "white"
+            }
+          }
+        }
+      }
+    });
+    
+
+  </script>
+  
+  

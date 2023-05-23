@@ -21,16 +21,16 @@
   </div>
   <ul class="menu">
     <li>
-      <a href="">Home</a>
+      <a href="#Home">Home</a>
     </li>
     <li>
-      <a href="">Contato</a>
+      <a href="#area-contato">Contato</a>
     </li>
     <li>
-      <a href="">Saiba +</a>
+      <a href="#area-saibaMais">Saiba +</a>
     </li>
     <li>
-      <a href="">Cadastre-se</a>
+      <a href="#./Cadastro.html">Cadastre-se</a>
     </li>
     <li>
       <a href="">Login</a>
@@ -38,7 +38,7 @@
   </ul>
 </header>
 
-  <section class="banner1">
+  <section class="Home">
   <div class="image-banner">
     <img src="./img/Banner.png" alt="" height="500px" width="1000%">
   </div>
@@ -69,41 +69,41 @@
       </div>
     </div>
   </div>
-  <section class="section-cadastro">
+  <section class="banner2">
   <section class="calculo">
-    <div class="container-imc">
-      <H3>Calcule aqui o seu IMC!</H3> <br>
-      <input type="number" placeholder="Sua altura:" class="input-form" id="inp-altura"> <br>
-      <input type="number" placeholder="Seu peso:" class="input-form" id="inp-peso"> <br>
-      <button class="btn1"onclick="calculaIMC()">Calcular IMC</button>
-      <div id="imcResultado"></div>
-
-    </div>
     <div >
       <img src="./img/banner2.png" alt=""  height="500px">
     </div>
+    <div>
+      <p>kakakakkakkakaakkak <br>akakkakakakkakakakakkakaka <br>kakakkakakakakkakkakka</p>
+    </div>
+    <div class="container-imc" id="div_container">
+      <H3>Calcule aqui o seu IMC!</H3> <br>
+      <input type="number" placeholder="Sua altura:" class="input-form" id="inp-altura"> <br>
+      <input type="number"  placeholder="Seu peso:" class="input-form" id="inp-peso"> <br>
+      <button class="btn1" onclick="calculaIMC()">Calcular IMC</button>
+      <div id="imcResultado"></div>
+
+    </div>
   </section>
   </section>
-  <section class="" >
+  <section class="" id="area-saibaMais">
     <div class="saibaMais">
       <img src="./img/banner3.png" alt=""height="500px">
     </div>
   </section>
   <footer>
-  <div class="">
-    <h2 class="">Contact Me</h2>
-      <div class="">
-        <div class="">
-        <button class="" href="#"></button>
+  <div class="Contato" id="area-contato">
+    <h2 class="contato-text">Entre em contato</h2>
+      <div class="area-btn">
+        <div class="contato-btn">
+         <button class="btn" href="#https://www.instagram.com/amanda4ires/">Instagram</button>
         </div>
-        <div class="">
-         <button class="" href="#">LinkedIn</button>
+        <div class="contato-btn">
+        <button class="btn" href="#https://web.facebook.com/amanda.zacamaro">Facebook</button>
         </div>
-        <div class="">
-        <button class="" href="#">Github</button>
-        </div>
-        <div class="">
-        <button class="" href="#">Free Code Camp</button>
+        <div class="contato-btn">
+        <button class="btn" href="#https://outlook.office.com/mail/">Email</button>
         </div>
       </div>
     </div>
@@ -113,10 +113,13 @@
 </html>
 <script>
   function calculaIMC(){
-    "<button class='estilo-btn' onclick='irPagina2()'>Ir para tela 2</button>"
-
-    div_aaaa.innerhtml  }
+    var altura = inp-altura.value;
+    var peso = inp-peso.value;
+    var imc = (altura*2)/ peso;
+    div_contaier.innerHTML = imc
+ }
     function cadastrar(){
+      "<button class='estilo-btn' onclick='irPagina2()'>Ir para tela 2</button>"
 
     }
 </script>
