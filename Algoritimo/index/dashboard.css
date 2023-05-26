@@ -41,11 +41,12 @@
   }
   /*posicao da logo*/
   .header .logo {
-    display: block;
+    display: flex;
     float: left;
     font-size: 1.5em;
-    padding: 20px 30px;
+    padding: 15px 30px;
     text-decoration: none;
+    margin-left: 10px;
   }
   .grafico{
     background-color: rgb(150, 144, 144);
@@ -54,8 +55,15 @@
   }
   #menu {
     position: fixed;
-    right: 0;
-    top: 50%;
+    left: 0;
+    top: 45%;
     width: 8em;
     margin-top: -2.5em;
+    background: #f7A9A8;
+    border-radius: 15 px;
+    text-decoration: none;
   }
+.a,b{
+  background-color: aqua;
+
+}

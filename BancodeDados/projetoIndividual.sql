@@ -41,9 +41,23 @@ exemploDieta(idDieta)
 )auto_increment=11;
 
 insert into cadastro value
-(null,'Aninha','78,4','aninha@gmail.com','ajsjhgdg',1,111),
-(null,'Gigi','60,5','Gih@outlook.com','jfknjvbh',2,112),
-(null,'Regina','65,2','alice.R@hotmail.com','sjnbdhhv',3,113);
+(null,'Aninha','aninha@gmail.com','ajsjhgdg',1,111),
+(null,'Gigi','Gih@outlook.com','jfknjvbh',2,112),
+(null,'Regina','alice.R@hotmail.com','sjnbdhhv',3,113);
+create table peso( 
+idPeso int auto_increment ,
+kg float,
+dtPeso date,
+fkCadastro int,
+constraint fkassociativa foreign key(fkCadastro) references
+cadastro(idConta),
+constraint primary key (idPeso, fkCadastro,dtPeso)
+) auto_increment=1111;
+
+insert into peso values
+(null,67.1,'2023-05-25',11),
+(null,57,'2023-05-25',12),
+(null,60,'2023-05-25',13);   
 
 select * from usuario;
 select * from exemploDieta;
