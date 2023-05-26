@@ -15,17 +15,17 @@ insert into usuario values
 (null,'Alice Regina Zacarias','2000-08-12','11965342987');
 
 
-create table exemploDieta(
-idDieta int primary key auto_increment,
+create table meta(
+idMEta int primary key auto_increment,
 tipo varchar(45),
- constraint chkTipodieta check (tipo in('Emagrecimento','Manutenção de peso','Proteica' )),
+ constraint chkTipodieta check (tipo in('Emagrecimento','Manutenção de peso','Hípertrofia' )),
 descrição varchar(500)
 )auto_increment = 111;
 
-insert exemploDieta value
+insert meta value
 (null,'Emagrecimento','Dicas de treinos e exemplos de dietas para emagrecimento '),
 (null,'Manutenção de peso','Dicas de treinos e exemplos de dietas para ganho de massa magra'),
-(null,'Proteica','Dicas de treinos e exemplos de dietas para hipertrofia');
+(null,'Hípertrofia','Dicas de treinos e exemplos de dietas para hipertrofia');
 
 create table cadastro(
 idConta int primary key auto_increment,
@@ -36,8 +36,8 @@ senha varchar(30),
 fkusuario int,
 constraint fkdependente foreign key (fkusuario) references
 usuario(idUsuario),
-constraint fkExDieta foreign key (fkDieta) references
-exemploDieta(idDieta)
+constraint fkmetaUsuario foreign key (fkMeta) references
+meta(idMeta)
 )auto_increment=11;
 
 insert into cadastro value
@@ -60,8 +60,9 @@ insert into peso values
 (null,60,'2023-05-25',13);   
 
 select * from usuario;
-select * from exemploDieta;
+select * from meta;
 select * from cadastro;
+select * from peso;
 select * from cadastro join exemploDieta on idDieta = fkDieta;
 
 
