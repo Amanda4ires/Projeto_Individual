@@ -44,24 +44,24 @@
   </div>
  </section>
   <div class="box-informacoes">
-        <div class="col-md-3 col-sm-6">
-          <div class="card card-block">
+        <div class="colunas">
+          <div class="card">
         <img src="./img/exercise_plan_consistant_fitness_diet_icon_149054.png"  alt="icone" height="100px">
             <h5 class="card-title  mt-3 mb-3">Exercicios</h5>
             <p class="card-text">Treinos funcionais e especificos, com ou sem equipamentos <br> Exercicios localizados<br>Escolha qual parte do corpo você vai trabalhar mais!</p> 
       </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="card card-block">
+        <div class="colunas">
+          <div class="card">
         <img src="./img/dieta.png" alt="icone" height="100px">
-            <h5 class="card-title  mt-3 mb-3">Alimentação</h5>
-            <p class="card-text">Exemplos de dietas, de acordo com a sua necessidade.<br> Não sofra com dietas restritivas <br>Sua alimentação pode ser prazerosa!</p> 
+            <h5 class="card-title">Alimentação</h5>
+            <p class="card-text">Exemplos de receiitas, de acordo com a sua necessidade.<br> Não sofra com dietas restritivas <br>Sua alimentação pode ser prazerosa!</p> 
       </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="card card-block">
+        <div class="colunas">
+          <div class="card">
         <img src="./img/weight_body_scales_control_fitness_diet_icon_149040.png" alt="Photo of sunset" height="100px">
-            <h5 class="card-title  mt-3 mb-3">Acompanhamento</h5>
+            <h5 class="card-title">Acompanhamento</h5>
             <p class="card-text">Veja o avanço de seus treinos,analise sua evolução e <br>
               manutenção do seu peso <br> Defina e alcançe suas metas!</p> 
       </div>
@@ -78,11 +78,11 @@
       <p>kakakakkakkakaakkak <br>akakkakakakkakakakakkakaka <br>kakakkakakakakkakkakka</p>
     </div>
     <div class="container-imc" id="div_container">
-      <H3>Calcule aqui o seu IMC!</H3> <br>
-      <input type="number" placeholder="Sua altura:" class="input-form" id="inp-altura"> <br>
-      <input type="number"  placeholder="Seu peso:" class="input-form" id="inp-peso"> <br>
+      <H3>Calcule aqui o seu IMC!</H3>
+      <input type="number" placeholder="Sua altura:" class="input-form" id="inp_altura"> <br>
+      <input type="number"  placeholder="Seu peso:" class="input-form" id="inp_peso"> <br>
       <button id="btn1" onclick="calculaIMC()">Calcular IMC</button>
-      <div id="imcResultado"></div>
+      <div id="div_imcResultado"></div>
 
     </div>
   </section>
@@ -93,29 +93,58 @@
     </div>
   </section>
   <footer>
-    <div class="">
+    <div class="contato">
+      <div class="icones" >
+
     <a href="#">
-      <img src="" >
+      <img src="./img/facebook.png" height="50px">
    </a>
    <a href="#">
-    <img src="" >
+    <img src="./img/placa-do-github.png" height="50px">
  </a>
  <a href="#">
-  <img src="" >
+  <img src="./img/instagram.png"height="50px" >
 </a>
+</div>
 </div>
   </footer>
 </body>
 </html>
 <script>
   function calculaIMC(){
-    var altura = inp-altura.value;
-    var peso = inp-peso.value;
-    var imc = (altura*2)/ peso;
+    var altura = Number(inp_altura.value);
+    var peso = Number(inp_peso.value);
+    var imc =  peso /(altura * altura);
+    var resultado = imc;
+    if(resultado < 18.5){
+      div_imcResultado.innerHTML = ` Seu IMC está em ${resultado}, Classificação: Magreza <br>
+      Sua meta recomendavel é Hipertrofia/ ganho de massa!<br> cadastre-se para obter resultados!`
+
+    }else if (resultado >= 18.5 || resultado < 24.9 ){
+      div_imcResultado.innerHTML= ` Seu IMC está em ${resultado}, Classificação: Saudável !<br>
+      Sua meta recomendavel é Manutenção de peso !<br> cadastre-se para obter resultados!`
+
+     }else if(resulta > 24.9 || resultado < 29.9 ){
+      div_imcResultado.innerHTML= ` Seu IMC está em ${resultado}, Classificação: Sobrepeso <br>
+      Sua meta recomendavel é Emagrecimento !<br> cadastre-se para obter resultados!`
+    
+     }else if(resultado >29.9 || resultado < 34.9){
+      div_imcResultado.innerHTML= ` Seu IMC está em ${resultado}, Classificação: Obesidade grau I <br>
+      Sua meta recomendavel é Emagrecimento !<br> cadastre-se para obter resultados <br> Consulte um especialista!`
+
+     }else if(resultado >34.9 || resultado < 39.9){
+      div_imcResultado.innerHTML= ` Seu IMC está em ${resultado}, Classificação: Obesidade grau II <br>
+      Sua meta recomendavel é Emagrecimento !<br> cadastre-se para obter resultados<br> Consulte um especialista!`
+
+     }else if(resultado > 39.9){
+      div_imcResultado.innerHTML= ` Seu IMC está em ${resultado}, Classificação: Obesidade grau III <br>
+      Sua meta recomendavel é Emagrecimento !<br> cadastre-se para obter resultados<br> Consulte um especialista!`
+
+     }
+
+
+
     div_contaier.innerHTML = imc
  }
-    function cadastrar(){
-      "<button class='estilo-btn' onclick='irPagina2()'>Ir para tela 2</button>"
 
-    }
 </script>
