@@ -1,0 +1,32 @@
+/*cor de fundo*/
+
+    #menu {
+        position: fixed;
+        left: 0;
+        top: 45%;
+        width: 8em;
+        margin-top: -2.5em;
+        background: #f7A9A8;
+        border-radius: 30px;
+        text-decoration: none;
+        transform: scale(1.00);
+        box-shadow: 5px 5px 5px#ec3355d2;
+        z-index: 40;
+        list-style: none;
+      }
+    .a{
+        width: 300px;
+        height: 70px;
+        display: flex;
+        flex-direction: row;
+        row-gap: 1rem;
+        padding: 3rem;
+        text-align: center;
+        background: #fab6b4;
+        border-radius: 19px;
+        box-shadow: 8px 8px 8px   #e78093d2;
+        margin: 50px;
+        margin-top: 200px;
+        transform: scale(1.05);
+    
+    }

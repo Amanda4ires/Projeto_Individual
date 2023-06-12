@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnessHome-meta</title>
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="meta.css" />
+</head>
+<style>
+  @font-face {
+    font-family:minha-fonte;
+    src: url(./Orbitron-VariableFont_wght.ttf);
+  }
+  h1,h5,h2,p,a{
+    font-family: minha-fonte;
+  }
+  
+
+  </style>
+
+<body>
+    <header >
+    
+        <div class="header">
+            <a href="" class="logo">
+              <img src="./img/LOGO.png" alt="" height="60px">
+            </a>
+            <ul class="menu">
+              <li>
+                <a href="./index.html">Home</a>
+              </li>
+              
+              <li>
+                <a href="./Cadastro.html">Cadastre-se</a>
+              </li>
+              <li>
+                <a href="./login.html">Login</a>
+              </li>
+            </ul>
+        </div>
+      </header>
+      <section>
+        <div class="area-login">
+          <div class="img-fundo">
+          <img class="img" src="" height="400px" > 
+          </div>
+          <div class="logar">
+            <div class="content">  
+            <h2 class="tex1">Meta</h2>
+            <input type="radio" id="Emagrecimento" name="tipo_dieta" value="Emagrecimento">
+              <p>Emagrecimento</p><br>
+              <input type="radio" id="Manutencao" name="tipo_dieta" value="Manutenção de peso">
+              <p>Manutenção de peso</p><br>
+              <input type="radio" id="Hipertrofia" name="tipo_dieta" value="Hipertrofia">
+              <p>Hipertrofia</p>
+            <br>
+            <button onclick="cadastrar()" id="btn1">Cadastrar meta</button>
+            </div>
+        </div>
+    </section>
+  
+  </body>
+</html>
+
+<script>
+
+function cadastrar() {
+
+var tipo = document.querySelector('input[name="tipo_dieta"]:checked').value;
+sessionStorage.TIPO_DIETA = tipo;
+
+
+// Enviando o valor da nova input
+fetch("/meta/cadastrar", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+      tipo: tipo,
+      fkMetaUsuario: sessionStorage.getItem("ID_USUARIO")
+    })
+}).then(function (resposta) {
+
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {
+        alert("Meta cadastrada com sucesso!")
+
+        setTimeout(() => {
+            window.location = "DashboardChartjs.html";
+        }, "2000")
+    } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+    }
+}).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+});
+
+return false;
+ }
+
+</script>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitnessHome</title>
+  <link rel="stylesheet" href="menu.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<style>
+  @font-face {
+    font-family:minha-fonte;
+    src: url(./Orbitron-VariableFont_wght.ttf);
+  }
+  h3,h5,h4,p,a,#btn1,.input-form{
+    font-family: minha-fonte;
+    
+  }
+  
+
+  </style>
+  <body>
+    
+  
+<header class="header">
+  <div class="logo">
+  <a href="" class="logo">
+    <img src="./img/LOGO.png" alt="" height="60px">
+  </a>
+  </div>
+  <ul class="menu">
+    <li>
+      <a href="#Home">Home</a>
+    </li>
+    <li>
+      <a href="#area-contato">Contato</a>
+    </li>
+    <li>
+      <a href="#area-saibaMais">Saiba +</a>
+    </li>
+    <li>
+      <a href="./Cadastro.html">Cadastre-se</a>
+    </li>
+    <li>
+      <a href="./login.html">Login</a>
+    </li>
+  </ul>
+</header>
+
+  <section class="Home">
+  <div class="image-banner">
+    <img src="./img/Banner.png" alt="" height="500px" width="1000%">
+      <h3 class="title1">Desperte a sua melhor forma! <br>
+        <br>
+          Traçe a sua meta e acompanhe sua evolução <br>
+          <br>
+          Não sofra mais com dietas restritivas e o temivél "Efeito Sanfona"
+      </h3>
+  </div>
+  
+ </section>
+  <div class="box-informacoes">
+        <div class="colunas">
+          <div class="card">
+        <img src="./img/exercise_plan_consistant_fitness_diet_icon_149054.png"  alt="icone" height="100px">
+            <h5 class="card-title  mt-3 mb-3">Exercicios</h5>
+            <p class="card-text">Treinos funcionais e especificos, com ou sem equipamentos <br> Exercicios localizados<br>Escolha qual parte do corpo você vai trabalhar mais!</p> 
+      </div>
+        </div>
+        <div class="colunas">
+          <div class="card">
+        <img src="./img/dieta.png" alt="icone" height="100px">
+            <h5 class="card-title">Alimentação</h5>
+            <p class="card-text">Exemplos de receiitas, de acordo com a sua necessidade.<br> Não sofra com dietas restritivas <br>Sua alimentação pode ser prazerosa!</p> 
+      </div>
+        </div>
+        <div class="colunas">
+          <div class="card">
+        <img src="./img/weight_body_scales_control_fitness_diet_icon_149040.png" alt="Photo of sunset" height="100px">
+            <h5 class="card-title">Acompanhamento</h5>
+            <p class="card-text">Veja o avanço de seus treinos,analise sua evolução e <br>
+              manutenção do seu peso <br> Defina e alcançe suas metas!</p> 
+      </div>
+        </div>    
+      </div>
+    </div>
+  </div>
+  <section class="banner2">
+  <section class="calculo">
+    <div >
+      <h3 class="title2">
+        Calcule aqui o seu Indice de Massa Corporal <br>
+        <br>
+        Ele avalia se o seu peso está dentro do valor ideal <br> para a sua altura 
+        <br>
+        <br>
+        Saiba qual já a melhor rota na sua  <br> jornada para o alcance de seus objetivos!
+      </h3>
+      <img src="./img/banner2.png" alt=""  height="500px">
+    </div>
+    <div>
+      <p> </p>
+    </div>
+    <div class="area-imc">
+    <div class="container-imc" id="div_container">
+      <H4>Calcule aqui o seu IMC!</H4>
+      <input type="number" placeholder="Sua altura:" class="input-form" id="inp_altura"> 
+      <input type="number"  placeholder="Seu peso:" class="input-form" id="inp_peso"> 
+      <button id="btn1" onclick="calculaIMC()">Calcular IMC</button>
+      <div id="div_imcResultado"></div>
+      </div>
+      
+      <img src="./img/imc.png" alt="" class="imc-img">
+      
+
+    </div>
+  </section>
+  </section>
+  <section class="" id="area-saibaMais">
+    <div class="saibaMais">
+      <img src="./img/banner3.png" alt=""height="500px">
+      <h3 class="title3">
+        Olá, eu sou Amanda Aires, <br>
+        <br>
+         Técnica em Nutrição e Dietética e atualmente Cursando Analise e Desenvolvimento de Sistemas, <br>
+         <br>
+         meu objetivo é fundir as áreas proporcionando acessibilidade á saude,
+         <br>
+          <br> desmitificando o milagre de dietas mirabolantes
+          e mostrar que o tradicional funciona!
+      </h3>
+    </div>
+  </section>
+  <footer>
+    <div class="contato">
+      <div class="icones" >
+
+    <a href="https://web.facebook.com/amanda.zacamaro">
+      <img src="./img/facebook.png" height="50px">
+   </a>
+   <a href="https://github.com/Amanda4ires">
+    <img src="./img/placa-do-github.png" height="50px">
+ </a>
+ <a href="https://www.instagram.com/amanda4ires/">
+  <img src="./img/instagram.png"height="50px" >
+</a>
+</div>
+</div>
+  </footer>
+</body>
+</html>
+<script>
+  function calculaIMC(){
+    var altura = Number(inp_altura.value);
+    var peso = Number(inp_peso.value);
+    var imc =  peso /(altura * altura);
+    var resultado = imc.toFixed(1);
+  
+      div_imcResultado.innerHTML = ` Seu IMC está em ${resultado}`
+    }
+  
+
+</script>

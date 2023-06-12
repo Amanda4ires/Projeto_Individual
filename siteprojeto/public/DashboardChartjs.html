@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="menu.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./dashboard.css"/>
+</head>
+<style>
+  @font-face {
+    font-family:minha-fonte;
+    src: url(./Orbitron-VariableFont_wght.ttf);
+  }
+  h1,h4,p,a,.btn1,#input-form{
+    font-family: minha-fonte;
+  }
+  h2{
+    font-family: minha-fonte;
+    font-size: small;
+  }
+  
+
+  </style>
+<body> 
+<header >
+    
+  <div class="header">
+      <a href="" class="logo">
+        <img src="img/LOGO.png" alt="" height="60px">
+      </a>
+      <ul class="menu">
+        <li>
+          <a href="./index.html">Home</a>
+        </li>
+        <li>
+          <a href="">Contato</a>
+        </li>
+        <li>
+          <a href="">Saiba +</a>
+        </li>
+        
+        <li>
+          <a href="./login.html">LogOut</a>
+        </li>
+      </ul>
+  </div>
+ 
+</header>
+<div class="side-menu">
+  <div class="img-area">
+   <a href="./telaDietas.html">
+        <img src="img/dieta.png" height="80px">
+   </a>
+   <a href="./telaExercicio.html">
+        <img src="img/exercise_plan_consistant_fitness_diet_icon_149054.png" height="80px">
+   </a>
+   <a href="./index.html">
+    <img src="img/mbrilogout_99583.png" height="80px">
+   </a>
+  </div>  
+</div>
+
+<div class="container">
+      <img src="./img/weight_body_scales_control_fitness_diet_icon_149040.png" alt="" width="60px" height="60px">
+</div>
+  <div class="containers-area">
+    
+      <div class="controlPeso">
+  
+        <h2>Controle de peso <br>
+        <br>Aqui você pode visualizar a sua progressão</h2> <br>
+       <img src="./img/body_figure_waist_measurement_fitness_diet_icon_149042.png" alt="">
+      </div>
+      
+        <div class="atualizaPeso">
+          <input type="number" placeholder="Peso atual" id="input-form">
+          <button onclick="cadastrar()"  class="btn1">
+          Atualizar
+          </button>
+        </div>
+  </div>
+      <div class="grafico">
+        <canvas id="myChart" ></canvas>
+      </div>
+      
+</body>
+</html>
+<script>
+
+const ctx = document.getElementById('myChart');
+  
+  var dataPesoUsuario = [];
+  getPeso();
+
+
+    function cadastrar() {
+
+    var kg = document.getElementById('input-form').value;
+    var date = new Date();
+    var dtPeso = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+
+
+    // Enviando o valor da nova input
+    fetch("/peso/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+          kg: kg,
+          dtPeso: dtPeso,
+          fkCadastro: sessionStorage.getItem("ID_USUARIO")
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            alert("Peso cadastrado com sucesso!")
+            setTimeout(() => {
+                window.location = "DashboardChartjs.html";
+            }, "1500")
+        } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+  }
+
+    
+function getPeso() {
+        //aguardar();
+        fetch("/peso/listar").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    throw "Nenhum resultado encontrado!!";
+                }
+                resposta.json().then(function (resposta) {
+                  resposta.forEach(peso => {
+                    if (peso.fkCadastro == sessionStorage.getItem('ID_USUARIO')) {
+                      dataPesoUsuario.push(peso);
+                    }
+                  });
+                  plotarGrafico(dataPesoUsuario)
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    function plotarGrafico(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+
+        // Criando estrutura para plotar gráfico - dados
+
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Perda de peso',
+                data: [],
+                fill: false,
+                borderColor: '#ec3355d2',
+                borderWidth: 3,
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var data = resposta[i];
+            let dataPeso = new Date(data.dtPeso);
+            labels.push(new Intl.DateTimeFormat('pt-BR', {timeZone: 'UTC'}).format(dataPeso));
+            dados.datasets[0].data.push(data.kg);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+
+        // Adicionando gráfico criado em div na tela
+        ctx = new Chart(
+            document.getElementById(`myChart`),
+            config
+        );
+    }
+
+</script>
+
+  
+  

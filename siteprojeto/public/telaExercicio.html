@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnessHome-exercicios</title>
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="exercicios.css" />
+</head>
+<style>
+  @font-face {
+    font-family:minha-fonte;
+    src: url(./Orbitron-VariableFont_wght.ttf);
+  }
+  h1,h5,h2,p,a{
+    font-family: minha-fonte;
+  }
+  
+
+  </style>
+
+<body>
+      <section class="area">
+        <div class="header">
+          <a href="" class="logo">
+            <img src="./img/LOGO.png" alt="" height="60px">
+          </a>
+          <ul class="menu">
+            <li>
+              <a href="./index.html">Home</a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <div class="container-area">
+          <div class="side-menu">
+            <div class="img-area">
+             <a href="./telaDietas.html">
+                  <img src="img/dieta.png" height="80px">
+             </a>
+             <a href="./DashboardChartjs.html">
+                  <img src="img/weight_body_scales_control_fitness_diet_icon_149040.png" height="80px">
+             </a>
+             <a href="index.html">
+              <img src="img/mbrilogout_99583.png" height="80px">
+             </a>
+            </div>  
+          </div>
+        
+          <div class="itens-area">
+            <div class="ab">
+              <div class="a">
+               <img src="./img/exercise_plan_consistant_fitness_diet_icon_149054.png" alt="" width="60px" height="60px">
+             </div>
+            </div> 
+            <div class="carousel-area">
+              <button onclick="prevSlide()" class="btn-prev">
+                <img src="./img/seta (2).png" alt=""  width="60px">
+              </button>
+              <div id="carousel">
+              </div>
+              <button onclick="nextSlide()" class="btn-next">
+                <img src="./img/seta (2).png" alt="" width="60px">
+              </button>
+            </div>
+          </div> 
+        </div>
+    </section>
+  </body>
+</html>
+
+<script>
+
+    var emagrecimento = [
+      { imagem: "./img/hit1.jpg", link: "https://www.youtube.com/watch?v=jpizoUy4K9s" },
+      { imagem: "./img/hit2.jpg", link: "https://www.youtube.com/watch?v=zr08J6wB53Y" },
+      { imagem: "./img/hit3.jpg", link: "https://www.youtube.com/watch?v=M0uO8X3_tEA" }
+    ];
+
+    var manutencao = [
+      { imagem: "./img/manutencao1.jpg", link: "https://www.youtube.com/watch?v=Gs7H9oRGeiY&pp=ygUWdHJlaW5vIHByYSBtYW50ZXIgcGVzbw%3D%3D" },
+      { imagem: "./img/manutencao2.jpg", link: "https://www.youtube.com/watch?v=A47lqdr5QOM&pp=ygUWdHJlaW5vIHByYSBtYW50ZXIgcGVzbw%3D%3D" },
+      { imagem: "./img/manutencao3.jpg", link: "https://www.youtube.com/watch?v=kiZi71uCrw4&pp=ygUWdHJlaW5vIHByYSBtYW50ZXIgcGVzbw%3D%3D" }
+    ];
+
+    var hipertrofia = [
+      { imagem: "./img/hiper1.jpg", link: "https://www.youtube.com/watch?v=9GTfPI_6ga8&pp=ygUcZXhlcmPDrWNpb3MgcGFyYSBoaXBlcnRyb2ZpYQ%3D%3D" },
+      { imagem: "./img/hiper2.jpg", link: "https://www.youtube.com/watch?v=wg6SjEMs2lQ&pp=ygUcZXhlcmPDrWNpb3MgcGFyYSBoaXBlcnRyb2ZpYQ%3D%3D" },
+      { imagem: "./img/hiper3.jpg", link: "https://www.youtube.com/watch?v=zkMIVX7_C4w&pp=ygUcZXhlcmPDrWNpb3MgcGFyYSBoaXBlcnRyb2ZpYQ%3D%3D" }
+    ];
+
+    
+    
+    var images = ["imagem1.jpg", "imagem2.jpg", "imagem3.jpg"];
+    var currentIndex = 0;
+    var slides = document.getElementsByClassName("slide");
+    
+    const carousel = document.getElementById('carousel');
+    var tipoDieta = sessionStorage.getItem("TIPO_DIETA")
+
+  if (tipoDieta == 'Emagrecimento') {
+    emagrecimento.forEach((item) => {
+      const img = document.createElement('img');
+      
+      img.src = item.imagem;
+      img.className = 'slide';
+      const link = document.createElement('a');
+      link.href = item.link;
+      link.appendChild(img);
+      carousel.appendChild(link);
+    });
+  }
+  if (tipoDieta == 'Manutenção de peso') {
+    manutencao.forEach((item) => {
+      const img = document.createElement('img');
+      
+      img.src = item.imagem;
+      img.className = 'slide';
+      const link = document.createElement('a');
+      link.href = item.link;
+      link.appendChild(img);
+      carousel.appendChild(link);
+    });
+  }
+  if (tipoDieta == 'Hipertrofia') {
+    hipertrofia.forEach((item) => {
+      const img = document.createElement('img');
+      
+      img.src = item.imagem;
+      img.className = 'slide';
+      const link = document.createElement('a');
+      link.href = item.link;
+      link.appendChild(img);
+      carousel.appendChild(link);
+    });
+  }
+
+
+
+
+  function showSlide(index) {
+    // Oculta todas as imagens
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    // Exibe a imagem atual
+    slides[index].style.display = "block";
+  }
+
+  function nextSlide() {
+    currentIndex++;
+    if (currentIndex >= images.length) {
+      currentIndex = 0;
+    }
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = images.length - 1;
+    }
+    showSlide(currentIndex);
+  }
+
+  // Exibe a primeira imagem ao carregar a página
+  showSlide(currentIndex);
+</script>

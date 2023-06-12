@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnessHome-Login</title>
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="login.css" />
+</head>
+<style>
+  @font-face {
+    font-family:minha-fonte;
+    src: url(./Orbitron-VariableFont_wght.ttf);
+  }
+  h1,h5,h2,p,a,.input-form,#btn1{
+    font-family: minha-fonte;
+  }
+  
+
+  </style>
+
+<body>
+    <header >
+    
+        <div class="header">
+            <a href="" class="logo">
+              <img src="./img/LOGO.png" alt="" height="60px">
+            </a>
+            <ul class="menu">
+              <li>
+                <a href="./index.html/">Home</a>
+              </li>
+              <li>
+                <a href="">Contato</a>
+              </li>
+              <li>
+                <a href="">Saiba +</a>
+              </li>
+              <li>
+                <a href="./Cadastro.html">Cadastre-se</a>
+              </li>
+            </ul>
+        </div>
+      </header>
+      <section>
+        <div class="area-login">
+          <div class="img-fundo">
+          <img class="img" src="" height="400px" > 
+          </div>
+        <div class="logar">
+            <h2 class="tex1">Login</h2>
+            <input type="text"placeholder="Email:" class="input-form" id="inp_email">
+            <input type="password"placeholder="Senha:" class="input-form" id="inp_senha">
+            <br>
+            <button onclick="entrar()" id="btn1">
+                Entre
+            </button>
+        </div>
+        </div>
+    </section>
+    <footer>
+      <div class="contato">
+        <div class="icones" >
+  
+      <a href="https://web.facebook.com/amanda.zacamaro">
+        <img src="./img/facebook.png" height="50px">
+     </a>
+     <a href="https://github.com/Amanda4ires">
+      <img src="./img/placa-do-github.png" height="50px">
+   </a>
+   <a href="https://www.instagram.com/amanda4ires/">
+    <img src="./img/instagram.png"height="50px" >
+  </a>
+  </div>
+  </div>
+    </footer>
+
+</body>
+</html>
+
+<script>
+    function entrar() {
+
+        var emailVar = inp_email.value;
+        var senhaVar = inp_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/login/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.apelido;
+                    sessionStorage.ID_USUARIO = json.idConta;
+
+                    setTimeout(function () {
+                        window.location = "./meta.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+                alert('Nã foi possivel realizar login, tente novamente!')
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+</script>
